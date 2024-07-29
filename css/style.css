@@ -1,0 +1,15 @@
+
+/* Public Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Section */
+
+::placeholder {
+    opacity: 0.5 !important;
+}
+
+/* Products Section */

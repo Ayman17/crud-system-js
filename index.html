@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD System</title>
+    <link rel="stylesheet" href="./css/awesome.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="bg-info">
+    <header class="header py-5">
+        <div class="container d-flex flex-column align-items-center">
+            <h1 class="pb-2">CRUD System</h1>
+            <div class="content w-75 needs-validation">
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="productName" name="name"  placeholder="Iphone X">
+                </div>
+                <div class="mb-3">
+                    <label for="productCompany" class="form-label">Product Company</label>
+                    <input type="text" class="form-control" id="productCompany" name="company" placeholder="Apple" >
+                </div>
+                <div class="mb-3">
+                    <label for="productCategory" class="form-label">Product Category</label>
+                    <input type="text" class="form-control" id="productCategory" name="category" placeholder="Mobil Phones" >
+                </div>
+                <div class="mb-3">
+                    <label for="productDescription" class="form-label">Product Description</label>
+                    <input type="text" class="form-control" id="productDescription" name="description" placeholder="64GB" >
+                </div>
+                <div class="mb-3">
+                    <label for="productPrice" 
+                    class="form-label">Product Price</label>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text">EGP</span>
+                        <input type="number" class="form-control" id="productPrice" name="price" aria-label="Amount (to the nearest dollar)"  placeholder="5000">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-warning" id="addBtn" onclick="AddProduct()">Add Product</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="product-tabel vh-100">
+        <div class="container d-flex flex-column align-items-center">
+            
+            <!-- Title -->
+            <h2 class="pb-2 fw-bold">Products</h2>
+
+            <div class="searchBarAndClearButton w-100 d-flex justify-content-between my-3">
+                <!-- Search Bar -->
+                <div class="input-group w-25">
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input class="form-control" id="search" placeholder="Search" oninput="searchAndDisplayProduct()">
+                </div>
+    
+                <!-- Clear All button -->
+                <div class="clearAll">
+                    <button class="btn btn-dark px-4 py-2" onclick="clearAll()">
+                        Clear All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table Of Products -->
+            <div class="content w-100">
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Company</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
