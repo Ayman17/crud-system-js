@@ -1,14 +1,27 @@
+// Product info
 var productName = document.getElementById("productName");
 var productCompany = document.getElementById("productCompany");
 var productCategory = document.getElementById("productCategory");
 var productDescription = document.getElementById("productDescription");
 var productPrice = document.getElementById("productPrice");
+
+// products container
 var productContainer = [];
 var storageContent = JSON.parse(localStorage.getItem("products"));
 if (storageContent != null) {
     productContainer = storageContent;
 }
+
+// Regex Vlidators
+var nameRegex = /^[a-z A-Z]{3,}$/;
+var companyRegex = /^[a-z A-Z]{3,}$/;
+var categoryRegex = /^[a-z A-Z]{3,}$/;
+var descriptionRegex = /^[a-z A-Z0-9]{4,}$/;
+var priceRegex = /^[1-9][0-9]{1,}$/;
+
+// Dispaly searched products
 searchAndDisplayProduct();
+
 
 // TODO: FIX THIS when i delete with search filter the deleted element is not the element that i want to delete
 // TODO: FIX THIS when i update the product it's index changed
@@ -24,12 +37,20 @@ function AddProduct() {
         company: productCompany.value,
         category: productCategory.value,
         description: productDescription.value,
-        price: productPrice.value
+        price: productPrice.value,
     };
-    productContainer.push(product);
-    localStorage.setItem("products", JSON.stringify(productContainer));
-    clearInputsData();
-    searchAndDisplayProduct();
+    
+    if (validateAllProductInfo()) {
+        productContainer.push(product);
+        localStorage.setItem("products", JSON.stringify(productContainer));
+        clearInputsData();
+        searchAndDisplayProduct();
+        clearValidationStyle();
+    }
+    else {
+        alert("Invalid product data all fields required");
+    }
+
 }
 
 // Clear inputs from added product data
@@ -70,11 +91,16 @@ function dispalyProducts(contentToDisplay) {
 function addDataInInput(index) {
     // Take data up from products table to input data
     if (index >= 0 && index < productContainer.length) {
-        document.getElementById("productName").value = productContainer[index].name;
-        document.getElementById("productCompany").value = productContainer[index].company;
-        document.getElementById("productCategory").value = productContainer[index].category;
-        document.getElementById("productDescription").value = productContainer[index].description;
-        document.getElementById("productPrice").value = productContainer[index].price;
+        productName.value = productContainer[index].name;
+        productName.classList.add("is-valid");
+        productCompany.value = productContainer[index].company;
+        productCompany.classList.add("is-valid");
+        productCategory.value = productContainer[index].category;
+        productCategory.classList.add("is-valid");
+        productDescription.value = productContainer[index].description;
+        productDescription.classList.add("is-valid");
+        productPrice.value = productContainer[index].price;
+        productPrice.classList.add("is-valid");
 
         // change add button to update product and change it's appearance
         document.getElementById("addBtn").classList = "btn btn-success";
@@ -119,4 +145,71 @@ function clearAll() {
     productContainer = [];
     localStorage.removeItem('products');
     searchAndDisplayProduct();
+}
+
+// validate value with regex
+function validateValueWithRegex(validator, value) {
+    if (validator.test(value)) {
+        return true;
+    }
+    return false;
+}
+
+// Validate each product info with it's regex using id
+function validateEachProductInfo(input, id) {
+    var validator = ``;
+    var productInfo;
+
+    // choose the right regex and product info variable
+    switch (id) {
+        case "productName":
+            validator = nameRegex;
+            productInfo = productName;
+            break;
+        case "productCompany":
+            validator = companyRegex;
+            productInfo = productCompany;
+            break;
+        case "productCategory":
+            validator = categoryRegex;
+            productInfo = productCategory;
+            break;
+        case "productDescription":
+            validator = descriptionRegex;
+            productInfo = productDescription;
+            break;
+        case "productPrice":
+            validator = priceRegex;
+            productInfo = productPrice;
+            break;
+        default:
+            alert("Invalid input id!");
+            break;
+    }
+
+    // if valid add valid class and remove invalid class else add invalid class and remove valid class
+    if (validateValueWithRegex(validator, input)) {
+        productInfo.classList.add("is-valid");
+        productInfo.classList.remove("is-invalid");
+    } else {
+        productInfo.classList.add("is-invalid");
+        productInfo.classList.remove("is-valid");
+    }
+}
+
+// validate all product info
+function validateAllProductInfo() {
+    if (productName.classList.contains('is-valid') && productCompany.classList.contains('is-valid') && productCategory.classList.contains('is-valid') && productDescription.classList.contains('is-valid') && productPrice.classList.contains('is-valid')) {
+        return true;
+    }
+    return false;
+}
+
+// Clear validation style from inputs
+function clearValidationStyle() {
+    productName.classList.remove("is-valid");
+    productCompany.classList.remove("is-valid");
+    productCategory.classList.remove("is-valid");
+    productDescription.classList.remove("is-valid");
+    productPrice.classList.remove("is-valid");
 }

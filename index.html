@@ -12,30 +12,35 @@
     <header class="header py-5">
         <div class="container d-flex flex-column align-items-center">
             <h1 class="pb-2">CRUD System</h1>
-            <div class="content w-75 needs-validation">
+            <div class="content w-75">
                 <div class="mb-3">
                     <label for="productName" class="form-label">Product Name</label>
-                    <input type="text" class="form-control" id="productName" name="name"  placeholder="Iphone X">
+                    <input type="text" class="form-control" id="productName" name="name"  placeholder="Iphone X" oninput="validateEachProductInfo(this.value , this.id)">
+                    <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="mb-3">
                     <label for="productCompany" class="form-label">Product Company</label>
-                    <input type="text" class="form-control" id="productCompany" name="company" placeholder="Apple" >
+                    <input type="text" class="form-control" id="productCompany" name="company" placeholder="Apple" oninput="validateEachProductInfo(this.value , this.id)">
+                    <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="mb-3">
                     <label for="productCategory" class="form-label">Product Category</label>
-                    <input type="text" class="form-control" id="productCategory" name="category" placeholder="Mobil Phones" >
+                    <input type="text" class="form-control" id="productCategory" name="category" placeholder="Mobil Phones" oninput="validateEachProductInfo(this.value , this.id)">
+                    <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="mb-3">
                     <label for="productDescription" class="form-label">Product Description</label>
-                    <input type="text" class="form-control" id="productDescription" name="description" placeholder="64GB" >
+                    <input type="text" class="form-control" id="productDescription" name="description" placeholder="64GB" oninput="validateEachProductInfo(this.value , this.id)">
+                    <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="mb-3">
                     <label for="productPrice" 
                     class="form-label">Product Price</label>
                     <div class="mb-3 input-group">
                         <span class="input-group-text">EGP</span>
-                        <input type="number" class="form-control" id="productPrice" name="price" aria-label="Amount (to the nearest dollar)"  placeholder="5000">
+                        <input type="number" class="form-control" id="productPrice" name="price" aria-label="Amount (to the nearest dollar)"  placeholder="5000" oninput="validateEachProductInfo(this.value , this.id)">
                         <span class="input-group-text">.00</span>
+                        <div class="valid-feedback">Looks good!</div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-warning" id="addBtn" onclick="AddProduct()">Add Product</button>
