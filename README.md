@@ -1,4 +1,4 @@
-![CRUD System Banner](./screenShots/crud-gif.gif)
+![CRUD System Banner](./screenShots/main.png)
 # 🚀 CRUD System with JavaScript, HTML, CSS, & Bootstrap
 
 Manage your items with ease – Create, Read, Update, and Delete!
@@ -12,6 +12,8 @@ Manage your items with ease – Create, Read, Update, and Delete!
 ## Project Description
 This CRUD system is a web application built with JavaScript, HTML, CSS, and Bootstrap that allows users to Create, Read, Update, and Delete items in a list. The data is saved in the browser's local storage, ensuring it persists even after page reloads, without the need for a server or database.
 
+## Live Demo
+Check out the live demo of the CRUD system [here](https://ayman17.github.io/crud-system-js/)!
 
 ## Usage
 To interact with the CRUD system, simply:
